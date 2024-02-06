@@ -49,3 +49,52 @@ create table if not exists genre(
 create table if not exists director(
 	id_director serial primary key,
 	director VARCHAR(20) not null);
+
+
+
+alter table address
+add constraint fk_member_address
+foreign key (id_member)
+references member(id_member);
+
+alter table rental
+add constraint fk_member_rental
+foreign key (id_member)
+references member(id_member);
+
+alter table rental
+add constraint fk_inventario_rental
+foreign key (id_stock)
+references stock(id_stock);
+
+alter table stock
+add constraint fk_film_stock
+foreign key (id_film)
+references film(id_film);
+
+alter table film
+add constraint fk_genre_film
+foreign key (id_genre)
+references genre(id_genre);
+
+alter table film
+add constraint fk_director_film
+foreign key (id_director)
+references director(id_director);
+
+
+alter table director 
+add constraint unique_director
+unique (director);
+
+alter table film 
+add constraint unique_title
+unique (title);
+
+alter table genre  
+add constraint unique_genre
+unique (genre);
+
+alter table "member"  
+add constraint unique_id_passport
+unique (id_passport);
