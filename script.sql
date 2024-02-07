@@ -95,20 +95,19 @@ alter table genre
 add constraint unique_genre
 unique (genre);
 
-alter table "member"  
+alter table member  
 add constraint unique_id_passport
 unique (id_passport);
 
 
-
-insert into member (id_passport, "name", surname, birthday, phone)
+insert into member (id_passport, name, surname, birthday, phone)
 select distinct tv.dni, tv.nombre, concat(apellido_1, ' ', apellido_2) apellidos, cast(tv.fecha_nacimiento as date), tv.telefono 
 from tmp_videoclub tv ;
 
 insert into address (id_member, street, number, extension, postal_code)
 select distinct m.id_member, tv.calle, tv.numero, concat(piso, ' ', letra) exten, cast(tv.codigo_postal as INT)
 from tmp_videoclub tv 
-inner join "member" m on id_passport = tv.dni;
+inner join member m on id_passport = tv.dni;
 
 insert into director (director)
 select distinct director 
@@ -130,10 +129,13 @@ select distinct tv.id_copia, f.id_film
 from tmp_videoclub tv
 inner join film f on title = tv.titulo;
 
+ALTER SEQUENCE videoclub.stock_id_stock_seq RESTART with 309;
+
 insert into rental (pickup, return, id_stock, id_member)
 select cast(tv.fecha_alquiler as date), cast(tv.fecha_devolucion as date), tv.id_copia, m.id_member  
 from tmp_videoclub tv
-inner join "member" m on id_passport = tv.dni;
+inner join member m on id_passport = tv.dni;
+
 
 -- QUERY1: Check available films for renting:
 
