@@ -127,7 +127,7 @@ CREATE TABLE if not exists tmp_videoclub (
 	sinopsis text NULL,
 	director varchar(80) NULL,
 	fecha_alquiler date NULL,
-	fecha_devolucion date null,
+	fecha_devolucion date null
 );
 INSERT INTO tmp_videoclub (id_copia,fecha_alquiler_texto,dni,nombre,apellido_1,apellido_2,email,telefono,codigo_postal,fecha_nacimiento,numero,piso,letra,calle,ext,titulo,genero,sinopsis,director,fecha_alquiler,fecha_devolucion) VALUES
 	 (3,'2024-01-28','1124603H','Ivan','Santana','Medina','ivan.santana.medina@gmail.com','694804631','47007','2005-02-15','6','3','D','Francisco Pizarro','3D','El padrino','Drama','Don Vito Corleone, conocido dentro de los círculos del hampa como ''El Padrino'', es el patriarca de una de las cinco familias que ejercen el mando de la Cosa Nostra en Nueva York en los años cuarenta. Don Corleone tiene cuatro hijos: una chica, Connie, y tres varones; Sonny, Michael y Fredo. Cuando el Padrino reclina intervenir en el negocio de estupefacientes, empieza una cruenta lucha de violentos episodios entre las distintas familias del crimen organizado.','Francis Ford Coppola','2024-01-28',NULL),
