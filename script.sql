@@ -134,3 +134,18 @@ insert into rental (pickup, return, id_stock, id_member)
 select cast(tv.fecha_alquiler as date), cast(tv.fecha_devolucion as date), tv.id_copia, m.id_member  
 from tmp_videoclub tv
 inner join "member" m on id_passport = tv.dni;
+
+-- QUERY1: Check available films for renting:
+
+select distinct s.id_stock, f.title, f.sinopsis, f.year, g.genre, d.director
+from stock s 
+inner join rental r on r.id_stock = s.id_stock
+inner join film f on f.id_film = s.id_film
+inner join genre g on g.id_genre = f.id_genre
+inner join director d on d.id_director = f.id_director 
+where s.id_stock not in (
+	select r.id_stock 
+	from rental r
+	where "return" is null
+	)
+;
